@@ -16,5 +16,5 @@ What's new in this fork :
 __Note :__ If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
 
 <p align="center">
-![preview thumb](http://i.imgur.com/m34YK9n.png)
+<img src="http://i.imgur.com/m34YK9n.png" alt="CbrConverter screenshot" />
 </p>
