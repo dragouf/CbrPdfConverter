@@ -19,6 +19,8 @@ namespace CbrConverter
         public MainForm()
         {
             InitializeComponent();
+            ToolTip tooltip = new ToolTip();
+            tooltip.SetToolTip(this.btn_showlog, "Show/Hide Logs");
         }
 
        
@@ -180,6 +182,27 @@ namespace CbrConverter
             aboutform.ShowDialog();
         }
 
+
+        private int LogTopPosition
+        {
+            get
+            {
+                Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
+                int titleHeight = screenRectangle.Top - this.Top;
+                return this.textBoxLog.Top + titleHeight - 1;
+            }
+        }
+
+        private int LogBottomPosition
+        {
+            get
+            {
+                Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
+                int titleHeight = screenRectangle.Top - this.Top;
+                return this.textBoxLog.Bottom + titleHeight + 4;
+            }
+        }
+
         private void btn_showlog_Click(object sender, EventArgs e)
         {
             ToggleLog();
@@ -187,30 +210,59 @@ namespace CbrConverter
 
         private void ToggleLog()
         {
-            if (this.Size == new Size(525, 642))
+            if (this.Height >= this.LogBottomPosition)
             {
-                //this.btn_showlog.Text = "show log";
                 HideLog();
             }
             else
             {
-                //this.btn_showlog.Text = "hide log";
                 ShowLog();
             }
         }
 
         private void ShowLog()
-        {
-            //this.btn_showlog.Text = "hide log";
-            this.btn_showlog.Image = global::CbrConverter.Properties.Resources.arrow_double_up;
-            this.Size = new Size(525, 642);
+        {            
+            var timerSlide = new System.Windows.Forms.Timer();
+            timerSlide.Interval = 3;
+            timerSlide.Tick += delegate(object sender, EventArgs e)
+            {
+                var timer = (System.Windows.Forms.Timer)sender;
+                if (this.Height >= this.LogBottomPosition)
+                {
+                    timer.Enabled = false;
+                    this.Height = this.LogBottomPosition;
+                    this.btn_showlog.Image = global::CbrConverter.Properties.Resources.arrow_double_up;
+                }
+                else
+                {
+                    this.Height = this.Size.Height + 10;
+                }
+                    
+            };
+            timerSlide.Start();
         }
 
         private void HideLog()
         {
-            //this.btn_showlog.Text = "show log";
-            this.btn_showlog.Image = global::CbrConverter.Properties.Resources.arrow_double_down;
-            this.Size = new Size(525, 326);
+            // just a slide effect
+            var timerSlide = new System.Windows.Forms.Timer();
+            timerSlide.Interval = 3;
+            timerSlide.Tick += delegate(object sender, EventArgs e)
+            {
+                var timer = (System.Windows.Forms.Timer)sender;
+                if (this.Height <= this.LogTopPosition)
+                {
+                    timer.Enabled = false;
+                    this.Height = this.LogTopPosition;
+                    this.btn_showlog.Image = global::CbrConverter.Properties.Resources.arrow_double_down;
+                }
+                else
+                {
+                    this.Height = this.Height - 10;
+                }
+
+            };
+            timerSlide.Start();     
         }
 
         private void tbox_OuputFolder_Click(object sender, EventArgs e)

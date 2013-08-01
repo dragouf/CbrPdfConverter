@@ -162,11 +162,11 @@
             this.chk_JoinImages.AutoSize = true;
             this.chk_JoinImages.Checked = true;
             this.chk_JoinImages.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_JoinImages.Location = new System.Drawing.Point(185, 40);
+            this.chk_JoinImages.Location = new System.Drawing.Point(203, 40);
             this.chk_JoinImages.Name = "chk_JoinImages";
-            this.chk_JoinImages.Size = new System.Drawing.Size(170, 17);
+            this.chk_JoinImages.Size = new System.Drawing.Size(189, 17);
             this.chk_JoinImages.TabIndex = 9;
-            this.chk_JoinImages.Text = "Merge images from same page";
+            this.chk_JoinImages.Text = "Merge images from same Pdf page";
             this.chk_JoinImages.UseVisualStyleBackColor = true;
             // 
             // chk_NbPages
@@ -174,11 +174,11 @@
             this.chk_NbPages.AutoSize = true;
             this.chk_NbPages.Checked = true;
             this.chk_NbPages.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chk_NbPages.Location = new System.Drawing.Point(345, 17);
+            this.chk_NbPages.Location = new System.Drawing.Point(425, 17);
             this.chk_NbPages.Name = "chk_NbPages";
-            this.chk_NbPages.Size = new System.Drawing.Size(135, 17);
+            this.chk_NbPages.Size = new System.Drawing.Size(55, 17);
             this.chk_NbPages.TabIndex = 8;
-            this.chk_NbPages.Text = "Check Pages / Images";
+            this.chk_NbPages.Text = "P/Img";
             this.chk_NbPages.UseVisualStyleBackColor = true;
             this.chk_NbPages.Visible = false;
             // 
@@ -209,11 +209,11 @@
             // chk_ReduceSize
             // 
             this.chk_ReduceSize.AutoSize = true;
-            this.chk_ReduceSize.Location = new System.Drawing.Point(185, 17);
+            this.chk_ReduceSize.Location = new System.Drawing.Point(203, 17);
             this.chk_ReduceSize.Name = "chk_ReduceSize";
-            this.chk_ReduceSize.Size = new System.Drawing.Size(106, 17);
+            this.chk_ReduceSize.Size = new System.Drawing.Size(193, 17);
             this.chk_ReduceSize.TabIndex = 5;
-            this.chk_ReduceSize.Text = "Reduce File Size";
+            this.chk_ReduceSize.Text = "Compress images to reduce file size";
             this.chk_ReduceSize.UseVisualStyleBackColor = true;
             // 
             // pbar_TotalProgress
@@ -271,7 +271,7 @@
             this.btn_showlog.FlatAppearance.BorderSize = 0;
             this.btn_showlog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_showlog.Image = global::CbrConverter.Properties.Resources.arrow_double_down;
-            this.btn_showlog.Location = new System.Drawing.Point(226, 260);
+            this.btn_showlog.Location = new System.Drawing.Point(235, 260);
             this.btn_showlog.Name = "btn_showlog";
             this.btn_showlog.Size = new System.Drawing.Size(39, 28);
             this.btn_showlog.TabIndex = 6;
