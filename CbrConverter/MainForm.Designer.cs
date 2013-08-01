@@ -47,8 +47,10 @@
             this.lbl_ProcessingFile = new System.Windows.Forms.Label();
             this.pbar_ActualFile = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxLog = new System.Windows.Forms.TextBox();
             this.btn_showlog = new System.Windows.Forms.Button();
+            this.listViewLog = new System.Windows.Forms.ListView();
+            this.columnHeaderNb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderInfo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -256,15 +258,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Processing:";
             // 
-            // textBoxLog
-            // 
-            this.textBoxLog.Location = new System.Drawing.Point(4, 289);
-            this.textBoxLog.Multiline = true;
-            this.textBoxLog.Name = "textBoxLog";
-            this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLog.Size = new System.Drawing.Size(503, 313);
-            this.textBoxLog.TabIndex = 5;
-            // 
             // btn_showlog
             // 
             this.btn_showlog.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
@@ -278,13 +271,37 @@
             this.btn_showlog.UseVisualStyleBackColor = true;
             this.btn_showlog.Click += new System.EventHandler(this.btn_showlog_Click);
             // 
+            // listViewLog
+            // 
+            this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderNb,
+            this.columnHeaderInfo});
+            this.listViewLog.FullRowSelect = true;
+            this.listViewLog.GridLines = true;
+            this.listViewLog.Location = new System.Drawing.Point(3, 289);
+            this.listViewLog.Name = "listViewLog";
+            this.listViewLog.Size = new System.Drawing.Size(503, 322);
+            this.listViewLog.TabIndex = 7;
+            this.listViewLog.UseCompatibleStateImageBehavior = false;
+            this.listViewLog.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeaderNb
+            // 
+            this.columnHeaderNb.Text = "n°";
+            this.columnHeaderNb.Width = 33;
+            // 
+            // columnHeaderInfo
+            // 
+            this.columnHeaderInfo.Text = "Informations";
+            this.columnHeaderInfo.Width = 460;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 287);
+            this.Controls.Add(this.listViewLog);
             this.Controls.Add(this.btn_showlog);
-            this.Controls.Add(this.textBoxLog);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -299,7 +316,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -320,11 +336,13 @@
         private System.Windows.Forms.CheckBox chk_NbPages;
         private System.Windows.Forms.CheckBox chk_pdf2cbr;
         private System.Windows.Forms.CheckBox chk_cbr2pdf;
-        private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.CheckBox chk_JoinImages;
         private System.Windows.Forms.Button btn_showlog;
         private System.Windows.Forms.CheckBox chk_SourceFolder;
         private System.Windows.Forms.TextBox tbox_OuputFolder;
+        private System.Windows.Forms.ListView listViewLog;
+        private System.Windows.Forms.ColumnHeader columnHeaderNb;
+        private System.Windows.Forms.ColumnHeader columnHeaderInfo;
     }
 }
 

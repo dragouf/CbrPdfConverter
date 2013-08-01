@@ -100,8 +100,8 @@ namespace CbrConverter
                 //pbar_TotalProgress.Value = 0;
                 //pbar_ActualFile.Value = 0;
                 //lbl_ProcessingFile.Text =string.Empty;
-
-                this.textBoxLog.Text += e + Environment.NewLine;
+                listViewLog.Items.Add(new ListViewItem(new List<string>{ (listViewLog.Items.Count + 1).ToString(), e}.ToArray()));
+                //this.textBoxLog.Text += e + Environment.NewLine;
                 ShowLog();
             });
             //MessageBox.Show(e, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -189,7 +189,7 @@ namespace CbrConverter
             {
                 Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
                 int titleHeight = screenRectangle.Top - this.Top;
-                return this.textBoxLog.Top + titleHeight - 1;
+                return this.listViewLog.Top + titleHeight - 1;
             }
         }
 
@@ -199,7 +199,7 @@ namespace CbrConverter
             {
                 Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
                 int titleHeight = screenRectangle.Top - this.Top;
-                return this.textBoxLog.Bottom + titleHeight + 4;
+                return this.listViewLog.Bottom + titleHeight + 10;
             }
         }
 
