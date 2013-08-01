@@ -14,3 +14,6 @@ What's new in this fork :
   - Error won't pause processing 
 
 Note : If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
+
+
+![preview thumb](http://i.imgur.com/m34YK9n.png)
