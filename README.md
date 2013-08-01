@@ -13,7 +13,8 @@ What's new in this fork :
   - You can choose output folder
   - Error won't pause processing 
 
-Note : If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
+__Note :__ If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
 
-
+<p align="center">
 ![preview thumb](http://i.imgur.com/m34YK9n.png)
+</p>
