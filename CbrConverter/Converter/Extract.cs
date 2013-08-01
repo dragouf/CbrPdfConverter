@@ -111,9 +111,11 @@ namespace CbrConverter
                     //finished, update the ui
                     DataAccess.Instance.g_Processing = false;
                     DataAccess.Instance.g_totProgress = 0;
+                    DataAccess.Instance.g_curProgress = 0;
                     DataAccess.Instance.g_WorkingFile = string.Empty;
                     evnt_UpdateFileName(this, e);
                     evnt_UpdatTotBar(this, e);
+                    evnt_UpdateCurBar();
                 };
 
                 bw.RunWorkerAsync(); // starts the background worker

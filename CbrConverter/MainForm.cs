@@ -57,23 +57,12 @@ namespace CbrConverter
             PdfFunctions.evnt_UpdateCurBar += new PdfFunctions.UpdateCurrentBar(UpdateCurrBar);
         }
         private void UpdateCurrBar()
-        {
-           
+        {           
             this.Invoke((MethodInvoker)delegate
             {
                 if (DataAccess.Instance.g_curProgress > 100)
                     DataAccess.Instance.g_curProgress = 100;
                 pbar_ActualFile.Value = (int)DataAccess.Instance.g_curProgress;
-
-                //end remove original if selected
-              /*  if ((chk_deleteOrig.Checked) &&  (DataAccess.Instance.g_curProgress == 0))
-                {
-                    if (File.Exists(DataAccess.Instance.g_WorkingDir)) //single file
-                        File.Delete(DataAccess.Instance.g_WorkingDir);
-                    else
-                        Directory.Delete(DataAccess.Instance.g_WorkingDir, true);
-                }*/
-
             });
         }
 
@@ -93,7 +82,6 @@ namespace CbrConverter
 
         private void UpdateTotaBar(Extract m, EventArgs e)
         {
-
             this.Invoke((MethodInvoker)delegate
             {
                 if (DataAccess.Instance.g_totProgress > 100)
