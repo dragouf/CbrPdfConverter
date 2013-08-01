@@ -46,10 +46,10 @@ namespace CbrConverter
 		 * @see com.itextpdf.text.pdf.parser.RenderListener#renderImage(
 		 *     com.itextpdf.text.pdf.parser.ImageRenderInfo)
 		 */
-		public void RenderImage(ImageRenderInfo renderInfo)
-		{
-			PdfImageObject image = renderInfo.GetImage();
-			//PdfName filter = (PdfName)image.Get(PdfName.FILTER);
+        public void RenderImage(ImageRenderInfo renderInfo)
+        {
+            PdfImageObject image = renderInfo.GetImage();
+            //PdfName filter = (PdfName)image.Get(PdfName.FILTER);
 
             string imageName = string.Format("{0:0000}_{1:0000}.{2}", PageIndex, ImagesList.Count, image.GetImageBytesType().FileExtension);
             var pageImageIndex = new PageImageIndex
@@ -59,25 +59,24 @@ namespace CbrConverter
                 PageIndex = PageIndex
             };
             var imageType = image.GetImageBytesType();
-            if (imageType != PdfImageObject.ImageBytesType.JBIG2)
-            {
-                //var bmp = image.GetDrawingImage();                
-                
-                // Write image to file
-                string pathToSave = string.Format(@"{0}\{1}", OutputPath, imageName);
-                //bmp.Save(string.Format(pathToSave));
-                // bmp.Dispose();
+            //if (imageType != PdfImageObject.ImageBytesType.JBIG2)
+            //{
+            //var bmp = image.GetDrawingImage();                
 
-                // Sometime gdi+ error happen. We must write byte directly to disk
-                if (!Directory.Exists(OutputPath))
-                    Directory.CreateDirectory(OutputPath);
-                var bytes = image.GetImageAsBytes();
-                File.WriteAllBytes(pathToSave, bytes);
+            // Write image to file
+            string pathToSave = string.Format(@"{0}\{1}", OutputPath, imageName);
+            //bmp.Save(string.Format(pathToSave));
+            // bmp.Dispose();
 
-                ImagesList.Add(pageImageIndex, null);
-            }
+            // Sometime gdi+ error happen. We must write byte directly to disk
+            if (!Directory.Exists(OutputPath))
+                Directory.CreateDirectory(OutputPath);
+            var bytes = image.GetImageAsBytes();
+            File.WriteAllBytes(pathToSave, bytes);
 
-		}
+            ImagesList.Add(pageImageIndex, null);
+            //}
+        }
 		// ---------------------------------------------------------------------------     
 		/**
 		  * @see com.itextpdf.text.pdf.parser.RenderListener#renderText(

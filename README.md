@@ -12,3 +12,5 @@ What's new in this fork :
   - Process folder recursively
   - You can choose output folder
   - Error won't pause processing 
+
+Note : If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
