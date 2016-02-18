@@ -13,7 +13,7 @@ What's new in this fork :
   - You can choose output folder
   - Error won't pause processing 
 
-__Note :__ If you don't have visual studio  the compiled version is in "Compiled" folder. You can execute CbrConverter.exe.
+__Note :__ If you don't have visual studio you can download the executable file here: https://github.com/dragouf/CbrPdfConverter/releases/tag/1.1
 
 <p align="center">
 <img src="http://i.imgur.com/m34YK9n.png" alt="CbrConverter screenshot" />
