@@ -396,7 +396,7 @@ namespace CbrConverter
 
                         //checking file extension
                         string ext = Path.GetExtension(imageFile).ToLower();
-                        if ((string.Compare(ext, ".jpg") == 0) || (string.Compare(ext, ".jpeg") == 0) || (string.Compare(ext, ".png") == 0) || (string.Compare(ext, ".bmp") == 0) || (string.Compare(ext, ".new") == 0))
+                        if ((string.Compare(ext, ".tif") == 0) || (string.Compare(ext, ".jpg") == 0) || (string.Compare(ext, ".jpeg") == 0) || (string.Compare(ext, ".png") == 0) || (string.Compare(ext, ".bmp") == 0) || (string.Compare(ext, ".new") == 0))
                         {
                             //var size = iTextSharp.text.PageSize.A4;                                                    
                             var img = iTextSharp.text.Image.GetInstance(imageFile);
