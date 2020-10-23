@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Threading;
 
@@ -9,7 +7,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using Ionic.Zip;
 using System.ComponentModel;
-using SharpCompress.Archive;
+using SharpCompress.Archives;
 using SharpCompress.Common;
 
 namespace CbrConverter
@@ -163,6 +161,13 @@ namespace CbrConverter
                     divider = 50;
                 CurOneStep = divider / CurOneStep;
 
+                var options = new ExtractionOptions
+                {
+                    Overwrite = true,
+                    PreserveAttributes = false,
+                    PreserveFileTime = true
+                };
+
                 //extract the file into the folder
                 foreach (var entry in archive.Entries)
                 {
@@ -171,9 +176,9 @@ namespace CbrConverter
                         if (DataAccess.Instance.g_Processing) //this is to stop the thread if stop button is pressed
                         {
 
-                            string path = Path.Combine(temporaryDir, Path.GetFileName(entry.FilePath));
+                            string path = Path.Combine(temporaryDir, Path.GetFileName(entry.Key));
                             //entry.WriteToDirectory(@"C:\temp", ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
-                            entry.WriteToFile(path, ExtractOptions.Overwrite);
+                            entry.WriteToFile(path, options);
 
                             DataAccess.Instance.g_curProgress += CurOneStep;
                             evnt_UpdateCurBar();
