@@ -50,7 +50,7 @@ namespace CbrConverter
                 //it's a file so i start the single extraction thread
                 //check if cbr
                 string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile).ToLower();
-                if ((string.Compare(ext, ".cbr") == 0 || (string.Compare(ext, ".cbz") == 0)) && (_Cbr2Pdf))
+                if ((string.Compare(ext, ".zip") == 0 || (string.Compare(ext, ".rar") == 0 || (string.Compare(ext, ".cbr") == 0 || (string.Compare(ext, ".cbz") == 0)) && (_Cbr2Pdf))
                 {
 
                     Thread extract = new Thread(ConvertCbrToPdf);
