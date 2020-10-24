@@ -336,12 +336,12 @@ namespace CbrConverter
                     DataAccess.Instance.g_WorkingFile = file;
                     try
                     {
-                        string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile);
-                        if (((string.Compare(ext, ".cbr") == 0) || (string.Compare(ext, ".cbz") == 0) || (string.Compare(ext, ".CBZ") == 0) || (string.Compare(ext, ".CBR") == 0)) && (_Cbr2Pdf))
+                        string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile).ToLower();
+                        if (((string.Compare(ext, ".cbr") == 0) || (string.Compare(ext, ".rar") == 0) || (string.Compare(ext, ".cbz") == 0) || (string.Compare(ext, ".zip") == 0)) && (_Cbr2Pdf))
                         {
                             ConvertCbrToPdf();
                         }
-                        else if (((string.Compare(ext, ".pdf") == 0) || (string.Compare(ext, ".PDF") == 0)) && (_Pdf2Cbz))
+                        else if ((string.Compare(ext, ".pdf") == 0)  && (_Pdf2Cbz))
                         {
                             ConvertPdfToCbr(file);
                         }
