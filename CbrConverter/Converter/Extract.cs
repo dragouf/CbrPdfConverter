@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Threading;
 
@@ -9,7 +7,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using Ionic.Zip;
 using System.ComponentModel;
-using SharpCompress.Archive;
+using SharpCompress.Archives;
 using SharpCompress.Common;
 
 namespace CbrConverter
@@ -50,7 +48,7 @@ namespace CbrConverter
                 //it's a file so i start the single extraction thread
                 //check if cbr
                 string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile).ToLower();
-                if ((string.Compare(ext, ".cbr") == 0 || (string.Compare(ext, ".cbz") == 0)) && (_Cbr2Pdf))
+                if ((string.Compare(ext, ".zip") == 0 || string.Compare(ext, ".rar") == 0 || string.Compare(ext, ".cbr") == 0 || string.Compare(ext, ".cbz") == 0) && _Cbr2Pdf)
                 {
 
                     Thread extract = new Thread(ConvertCbrToPdf);
@@ -163,6 +161,13 @@ namespace CbrConverter
                     divider = 50;
                 CurOneStep = divider / CurOneStep;
 
+                var options = new ExtractionOptions
+                {
+                    Overwrite = true,
+                    PreserveAttributes = false,
+                    PreserveFileTime = true
+                };
+
                 //extract the file into the folder
                 foreach (var entry in archive.Entries)
                 {
@@ -171,9 +176,9 @@ namespace CbrConverter
                         if (DataAccess.Instance.g_Processing) //this is to stop the thread if stop button is pressed
                         {
 
-                            string path = Path.Combine(temporaryDir, Path.GetFileName(entry.FilePath));
+                            string path = Path.Combine(temporaryDir, Path.GetFileName(entry.Key));
                             //entry.WriteToDirectory(@"C:\temp", ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
-                            entry.WriteToFile(path, ExtractOptions.Overwrite);
+                            entry.WriteToFile(path, options);
 
                             DataAccess.Instance.g_curProgress += CurOneStep;
                             evnt_UpdateCurBar();
@@ -331,12 +336,12 @@ namespace CbrConverter
                     DataAccess.Instance.g_WorkingFile = file;
                     try
                     {
-                        string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile);
-                        if (((string.Compare(ext, ".cbr") == 0) || (string.Compare(ext, ".cbz") == 0) || (string.Compare(ext, ".CBZ") == 0) || (string.Compare(ext, ".CBR") == 0)) && (_Cbr2Pdf))
+                        string ext = Path.GetExtension(DataAccess.Instance.g_WorkingFile).ToLower();
+                        if (((string.Compare(ext, ".cbr") == 0) || (string.Compare(ext, ".rar") == 0) || (string.Compare(ext, ".cbz") == 0) || (string.Compare(ext, ".zip") == 0)) && (_Cbr2Pdf))
                         {
                             ConvertCbrToPdf();
                         }
-                        else if (((string.Compare(ext, ".pdf") == 0) || (string.Compare(ext, ".PDF") == 0)) && (_Pdf2Cbz))
+                        else if ((string.Compare(ext, ".pdf") == 0)  && (_Pdf2Cbz))
                         {
                             ConvertPdfToCbr(file);
                         }
@@ -365,7 +370,8 @@ namespace CbrConverter
             var writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
             document.Open();
 
-            string[] imageFiles = Directory.GetFiles(temporaryDir);
+            var imageFiles = Directory.GetFiles(temporaryDir).ToList();
+            imageFiles.Sort();
 
             //count for progression bar
             CurOneStep = imageFiles.Count();
@@ -396,7 +402,7 @@ namespace CbrConverter
 
                         //checking file extension
                         string ext = Path.GetExtension(imageFile).ToLower();
-                        if ((string.Compare(ext, ".jpg") == 0) || (string.Compare(ext, ".jpeg") == 0) || (string.Compare(ext, ".png") == 0) || (string.Compare(ext, ".bmp") == 0) || (string.Compare(ext, ".new") == 0))
+                        if ((string.Compare(ext, ".tif") == 0) || (string.Compare(ext, ".jpg") == 0) || (string.Compare(ext, ".jpeg") == 0) || (string.Compare(ext, ".png") == 0) || (string.Compare(ext, ".bmp") == 0) || (string.Compare(ext, ".new") == 0))
                         {
                             //var size = iTextSharp.text.PageSize.A4;                                                    
                             var img = iTextSharp.text.Image.GetInstance(imageFile);
